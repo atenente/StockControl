@@ -1,0 +1,17 @@
+<tbody>
+  <tr>
+    <td class="border"><%= product.sku %></td>
+    <td class="border"><%= product.description %></td>
+    <td class="border"><%= product.price %></td>
+    <td class="border"><%= product.stock %></td>
+    <td class="border"><%= product.supplier %></td>
+    <td class="border"><%= product.size %></td>
+    <td class="border"><%= product.color %></td>
+    <td class="border"><%= product.kind %></td>
+    <% if params[:action] == 'index' %>
+      <td class="border"><%= link_to 'Detail', edit_product_path(product) %></td>
+    <% elsif params[:action] == 'show' %>
+      <td class="border"><%= product.updated_at.strftime("%d-%m-%y %H:%M") %></td>
+    <% end %>
+  </tr>
+</tbody>

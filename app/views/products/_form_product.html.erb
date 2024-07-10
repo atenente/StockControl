@@ -1,0 +1,20 @@
+<%= simple_form_for product do |form| %>
+  <div class="d-flex">
+    <div class="col-md-11">
+      <%= form.input :sku, input_html: { placeholder: '*78912345678910*' } %>
+      <%= form.input :description %>
+      <%= form.input :price, input_html: { value: @product.price || 0 } %>
+      <%= form.input :stock, input_html: { value: @product.stock || 0 } %>
+      <%= form.input :supplier %>
+      <%= form.input :size %>
+      <%= form.input :color %>
+      <%= form.input :kind %>
+    </div>
+  </div>
+  <div class="col-md-11">
+    <div class="d-flex justify-content-between">
+      <%= form.button :submit, 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Back home', products_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

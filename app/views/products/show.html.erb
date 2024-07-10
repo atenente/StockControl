@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>SHOW PRODUCT</h1>
+
+  <table class="table">
+    <%= render 'header_product' %>
+    <%= render @product %>
+  </table>
+  <div class="d-flex justify-content-between">
+    <%= link_to 'Back home', products_path, class: 'btn btn-primary' %>
+    <%= button_to "Remove", @product, method: :delete, class: 'btn btn-danger' %>
+  </div>
+</div>
