@@ -1,10 +1,12 @@
 <div class="container">
-  <h1>INDEX PRODUCT</h1>
+  <h1><%= t('.all_products') %></h1>
 
-  <%= link_to 'Create New', new_product_path, class: 'btn btn-primary' %>
+  <%= link_to t('products.new.create_product'), new_product_path, class: 'btn btn-primary', data: { turbo: false } %>
   <br><br>
-  <table class="table">
-    <%= render 'header_product' %>
-    <%= render @products %>
-  </table>
+  <div class="table-responsive-md">
+    <table class="table">
+      <%= render 'header_product' %>
+      <%= render @products %>
+    </table>
+  </div>
 </div>

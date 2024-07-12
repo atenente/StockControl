@@ -13,8 +13,8 @@
   </div>
   <div class="col-md-11">
     <div class="d-flex justify-content-between">
-      <%= form.button :submit, 'Save', class: 'btn btn-primary' %>
-      <%= link_to 'Back home', products_path, class: 'btn btn-secondary' %>
+      <%= form.button :submit, class: 'btn btn-primary', data: { turbo: false } %>
+      <%= link_to t('global.back'), products_path, class: 'btn btn-secondary' %>
     </div>
   </div>
 <% end %>

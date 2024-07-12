@@ -4,36 +4,36 @@
   <div class="row g-1">
     <div class="col-sm-6 p-1">
       <div class="p-2 border bg-light">
-        <h3>Resume products</h3>
+        <h3><%= t('.products_summary') %></h3>
         <hr>
         <div class="row">
           <div class="col-sm-2">
-            <div>Quantity:</div>
-            <div>Stock:</div>
-            <div>Value:</div>
+            <div><%= t('global.quantity') %>:</div>
+            <div><%= t('global.stock') %>:</div>
+            <div><%= t('global.value') %>:</div>
           </div>
-          <div class="col-sm-1">
-            <div><%= Product.all.count %></div>
-            <div> <%= Product.sum(:stock) %></div>
-            <div> <%= Product.sum(:price) %></div>
+          <div class="col-md-auto">
+            <div><%= number_with_delimiter(Product.all.count) %></div>
+            <div><%= number_with_delimiter(Product.sum(:stock)) %></div>
+            <div><%= number_to_currency(Product.sum(:price)) %></div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-6 p-1">
       <div class="p-2 border bg-light">
-        <h3>Resume products</h3>
+        <h3><%= t('.products_summary') %></h3>
         <hr>
         <div class="row">
           <div class="col-sm-2">
-            <div>Quantity:</div>
-            <div>Stock:</div>
-            <div>Value:</div>
+            <div><%= t('global.quantity') %>:</div>
+            <div><%= t('global.stock') %>:</div>
+            <div><%= t('global.value') %>:</div>
           </div>
-          <div class="col-sm-1">
-            <div><%= Product.all.count %></div>
-            <div> <%= Product.sum(:stock) %></div>
-            <div> <%= Product.sum(:price) %></div>
+          <div class="col-md-auto">
+            <div><%= number_with_delimiter(Product.all.count) %></div>
+            <div><%= number_with_delimiter(Product.sum(:stock)) %></div>
+            <div><%= number_to_currency(Product.sum(:price)) %></div>
           </div>
         </div>
       </div>

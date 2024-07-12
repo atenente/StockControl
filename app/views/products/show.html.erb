@@ -1,12 +1,13 @@
 <div class="container">
-  <h1>SHOW PRODUCT</h1>
-
-  <table class="table">
-    <%= render 'header_product' %>
-    <%= render @product %>
-  </table>
+  <h1><%= t(".detail_ product") %></h1>
+  <div class="table-responsive-md">
+    <table class="table">
+      <%= render 'header_product' %>
+      <%= render @product %>
+    </table>
+  </div>
   <div class="d-flex justify-content-between">
-    <%= link_to 'Back home', products_path, class: 'btn btn-primary' %>
-    <%= button_to "Remove", @product, method: :delete, class: 'btn btn-danger' %>
+    <%= link_to t('global.back'), products_path, class: 'btn btn-primary' %>
+    <%= button_to t('global.delete'), @product, method: :delete, class: 'btn btn-danger' %>
   </div>
 </div>

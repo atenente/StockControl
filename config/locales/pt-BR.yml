@@ -1,0 +1,35 @@
+pt-BR:
+  global:
+    back: Voltar
+    create: Criar
+    update: Atualizar
+    save: Salvar
+    delete: Deletar
+    detail: Detalhes
+    edit: Editar
+    quantity: Quantidade
+    stock: Estoque
+    value: Valor
+    sku: 'Código SKU'
+    description: 'Descrição'
+    price: 'Preço'
+    stock: 'Estoque'
+    supplier: 'Fornecedor'
+    size: 'Tamanho'
+    color: 'Cor'
+    kind: 'Tipo'
+  homes:
+    index:
+      products_summary: Resumo dos produtos
+  products:
+    products: Produtos
+    product: Produto
+    edit:
+      edit_product: Editar Produto
+    index:
+      all_products: Todos Produtos
+    new:
+      create_product: Criar Produto
+    show:
+      detail_ product: Detalhe do Produto
+      last_update: Ultima atualização

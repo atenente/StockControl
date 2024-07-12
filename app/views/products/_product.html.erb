@@ -9,9 +9,12 @@
     <td class="border"><%= product.color %></td>
     <td class="border"><%= product.kind %></td>
     <% if params[:action] == 'index' %>
-      <td class="border"><%= link_to 'Detail', edit_product_path(product) %></td>
+      <td class="border"><%= link_to  t('global.detail'), product_path(product) %></td>
+      <td class="border"><%= link_to t('global.edit'), edit_product_path(product), data: { turbo: false } %></td>
     <% elsif params[:action] == 'show' %>
-      <td class="border"><%= product.updated_at.strftime("%d-%m-%y %H:%M") %></td>
+      <td colspan='2' class="border">
+        <%= t('products.show.last_update') %>: <%= l(@product.updated_at, format: :br) %>
+      </td>
     <% end %>
   </tr>
 </tbody>
