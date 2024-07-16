@@ -1,5 +1,6 @@
 pt-BR:
   global:
+    search: Procurar
     back: Voltar
     create: Criar
     update: Atualizar
@@ -18,6 +19,7 @@ pt-BR:
     size: 'Tamanho'
     color: 'Cor'
     kind: 'Tipo'
+    search_by_item: 'Procurar por item'
   homes:
     index:
       products_summary: Resumo dos produtos

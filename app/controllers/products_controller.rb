@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
+    return find_products if params[:filter_value].present?
     @products = Product.all.order(updated_at: :desc)
   end
 
@@ -42,6 +43,14 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = Product.find(params[:id])
+  end
+
+  def find_products
+    if %w[sku stock price].include?(params[:filter_column])
+      @products = Product.where("#{params[:filter_column]} = ?", params[:filter_value].to_f)
+    else
+      @products = Product.where("#{params[:filter_column]}::text LIKE ?", "%#{params[:filter_value]}%")
+    end
   end
 
 end
