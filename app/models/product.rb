@@ -3,7 +3,8 @@ class Product < ApplicationRecord
   validates :sku, presence: true
   validates :sku, uniqueness: true
   validates :price, numericality: true
-  validates :stock, :sku, numericality: { only_integer: true }
+  validates :stock, numericality: { only_integer: true }
+  validates :description, length: { maximum: 255 }
 
   private
 

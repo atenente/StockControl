@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
   end
 
   def find_products
-    if %w[sku stock price].include?(params[:filter_column])
+    if %w[stock price].include?(params[:filter_column])
       @products = Product.where("#{params[:filter_column]} = ?", params[:filter_value].to_f)
     else
       @products = Product.where("#{params[:filter_column]}::text LIKE ?", "%#{params[:filter_value]}%")

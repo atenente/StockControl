@@ -15,10 +15,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_04_151838) do
   enable_extension "plpgsql"
 
   create_table "products", force: :cascade do |t|
-    t.integer "sku"
-    t.string "description"
-    t.float "price", default: 0
-    t.float "stock", default: 0
+    t.string "sku"
+    t.string "description", limit: 255
+    t.float "price", default: 0.0
+    t.integer "stock", default: 0
     t.string "supplier"
     t.string "size"
     t.string "color"
