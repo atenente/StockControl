@@ -1,0 +1,18 @@
+<%= simple_form_for company do |form| %>
+  <div class="d-flex">
+    <div class="col-md-11">
+      <%= form.input :name %>
+      <%= form.input :address %>
+      <%= form.input :zip_code, input_html: { placeholder: '00000-000' } %>
+      <%= form.input :city %>
+      <%= form.input :state %>
+      <%= form.input :cnpj %>
+    </div>
+  </div>
+  <div class="col-md-11">
+    <div class="d-flex justify-content-between">
+      <%= form.button :submit, class: 'btn btn-primary', data: { turbo: false } %>
+      <%= link_to t('global.back'), companies_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

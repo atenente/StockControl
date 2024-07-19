@@ -1,0 +1,18 @@
+<tbody>
+  <tr>
+    <td class="border"><%= company.name %></td>
+    <td class="border"><%= company.address %></td>
+    <td class="border"><%= company.zip_code %></td>
+    <td class="border"><%= company.city %></td>
+    <td class="border"><%= company.state %></td>
+    <td class="border"><%= company.cnpj %></td>
+    <% if params[:action] == 'index' %>
+      <td class="border"><%= link_to  t('global.detail'), company_path(company) %></td>
+      <td class="border"><%= link_to t('global.edit'), edit_company_path(company), data: { turbo: false } %></td>
+    <% elsif params[:action] == 'show' %>
+      <td colspan='2' class="border">
+        <%= t('companies.show.last_update') %>: <%= l(@company.updated_at, format: :br) %>
+      </td>
+    <% end %>
+  </tr>
+</tbody>
