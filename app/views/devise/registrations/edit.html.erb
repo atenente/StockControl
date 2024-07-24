@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="login-container p-2">
+    <div class="p-1 mb-1 text-center fs-3 text border">
+      <%= t('.title', resource: resource.model_name.human) %>
+    </div>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :email, required: true, autofocus: true %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
+        <% end %>
+        <%= f.input :password,
+                    hint: t(".leave_blank_if_you_don_t_want_to_change_it"),
+                    required: false,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    required: false,
+                    input_html: { autocomplete: "new-confirmation" } %>
+        <%= f.input :current_password,
+                    required: false,
+                    hint: t(".we_need_your_current_password_to_confirm_your_changes"),
+                    input_html: { autocomplete: "current_password" } %>
+      </div>
+      <div class="d-grid">
+        <%= f.button :submit, t('.update'), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <hr>
+    <p>
+      <%= t(".unhappy") %> 
+      <%= link_to t(".cancel_my_account"), registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: t(".are_you_sure") } %>
+    </p>
+    <%= link_to t("devise.shared.links.back"), :back, class: 'btn btn-secondary' %>
+  </div>
+</div>

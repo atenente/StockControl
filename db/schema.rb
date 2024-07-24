@@ -10,18 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_19_182934) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_22_223025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "companies", force: :cascade do |t|
-    t.string "token"
-    t.string "name"
+  create_table "companies", primary_key: "token", id: :string, force: :cascade do |t|
+    t.string "name", limit: 255
     t.string "address"
     t.string "city"
     t.string "state"
     t.string "zip_code"
-    t.string "cnpj"
+    t.string "cnpj", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,8 +46,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_182934) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "users", "companies", column: "company_token", primary_key: "token"
 end
