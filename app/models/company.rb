@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
   has_many :users
   before_create :generate_token
+  validates :name, :cnpj, presence: true
   validates :token, :cnpj, uniqueness: true
 
   private
