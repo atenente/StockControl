@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   belongs_to :company, primary_key: 'token', foreign_key: 'company_token'
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+
+  has_many :products
+
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+
   validate :validate_company_token
   enum role: {user: 'user', admin: 'admin'}
 

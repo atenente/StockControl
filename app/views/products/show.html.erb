@@ -8,6 +8,6 @@
   </div>
   <div class="d-flex justify-content-between">
     <%= link_to t('global.back'), products_path, class: 'btn btn-primary' %>
-    <%= button_to t('global.delete'), @product, method: :delete, class: 'btn btn-danger' %>
+    <%= link_to t('global.delete'), @product, class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "#{t('global.confirm_delete')}" } %>
   </div>
 </div>

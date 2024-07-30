@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_25_184036) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_30_175550) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_184036) do
   create_enum "role_user", ["admin", "user"]
 
   create_table "companies", primary_key: "token", id: :string, force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "name", limit: 255, null: false
     t.string "address"
     t.string "city"
     t.string "state"
@@ -30,14 +30,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_184036) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "sku"
+    t.string "sku", limit: 255, null: false
     t.string "description", limit: 255
-    t.float "price", default: 0.0
+    t.decimal "price", precision: 10, scale: 2, default: "0.0"
     t.integer "stock", default: 0
     t.string "supplier"
     t.string "size"
     t.string "color"
     t.string "kind"
+    t.string "company_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

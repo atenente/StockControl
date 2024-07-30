@@ -11,15 +11,16 @@ pt-BR:
     quantity: Quantidade
     stock: Estoque
     value: Valor
-    sku: 'Código SKU'
-    description: 'Descrição'
-    price: 'Preço'
-    stock: 'Estoque'
-    supplier: 'Fornecedor'
-    size: 'Tamanho'
-    color: 'Cor'
-    kind: 'Tipo'
-    search_by_item: 'Procurar por item'
+    sku: Código SKU
+    description: Descrição
+    price: Preço
+    stock: Estoque
+    supplier: Fornecedor
+    size: Tamanho
+    color: Cor
+    kind: Tipo
+    search_by_item: Procurar por item
+    confirm_delete: Tem certeza?
   homes:
     index:
       products_summary: Resumo dos produtos

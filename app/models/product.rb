@@ -1,7 +1,8 @@
 class Product < ApplicationRecord
   before_validation :set_default_price
+
   validates :sku, presence: true
-  validates :sku, uniqueness: true
+  validates :sku, uniqueness: { scope: :company_token }
   validates :price, numericality: true
   validates :stock, numericality: { only_integer: true }
   validates :description, length: { maximum: 255 }
