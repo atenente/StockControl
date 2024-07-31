@@ -1,17 +1,30 @@
 pt-BR:
   activerecord:
     models:
-      product: 'Produto'
+      product:
+        one: Produto
+        other: Produtos
+      company: 
+        one: Empresa
+        other: Empresas
     attributes:
       product:
-        sku: 'Código SKU'
-        description: 'Descrição'
-        price: 'Preço'
-        stock: 'Estoque'
-        supplier: 'Fornecedor'
-        size: 'Tamanho'
-        color: 'Cor'
-        kind: 'Tipo'
+        sku: Código SKU
+        description: Descrição
+        price: Preço
+        stock: Estoque
+        supplier: Fornecedor
+        size: Tamanho
+        color: Cor
+        kind: Tipo
+      company:
+        token: Código
+        name: Nome
+        address: Endereço
+        zip_code: CEP
+        city: Cidade
+        state: Estado
+        cnpj: CNPJ
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

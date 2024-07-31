@@ -1,5 +1,6 @@
 pt-BR:
   global:
+    home: Início
     search: Procurar
     back: Voltar
     create: Criar
@@ -21,6 +22,14 @@ pt-BR:
     kind: Tipo
     search_by_item: Procurar por item
     confirm_delete: Tem certeza?
+    last_update: Ultima atualização
+    token: Código
+    name: Nome
+    address: Endereço
+    zip_code: CEP
+    city: Cidade
+    state: Estado
+    cnpj: CNPJ
   homes:
     index:
       products_summary: Resumo dos produtos
@@ -35,4 +44,14 @@ pt-BR:
       create_product: Criar Produto
     show:
       detail_ product: Detalhe do Produto
-      last_update: Ultima atualização
+  companies:
+    companies: Empresas
+    company: Empresa
+    edit:
+      edit_company: Editar Empresa
+    index:
+      all_companies: Todas Empresas
+    new:
+      create_company: Criar Empresa
+    show:
+      detail_ company: Detalhe da Empresa
