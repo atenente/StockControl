@@ -55,7 +55,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem "database_cleaner-active_record"
   gem "factory_bot_rails", "~> 6.2"
-  gem "faker", "~> 1.6", ">= 1.6.6"
+  gem 'faker', '~> 2.0'
   gem "rspec-rails", "~> 6.1"
   gem "rails-controller-testing"
 end

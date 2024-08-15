@@ -3,7 +3,7 @@ Company.create!(
   cnpj: '00000'
 )
 
-token_company = Company.first.token.to_s
+token_company = Company.find_by(cnpj: '00000').token.to_s
 User.create!(
   company_token: token_company,
   email: 'admin@example.com',
