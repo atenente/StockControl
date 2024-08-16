@@ -9,7 +9,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.string :size
       t.string :color
       t.string :kind
-      t.string :company_token, null: false
+      t.references :company, null: false, foreign_key: { to_table: :companies, primary_key: :token }, type: :string
 
       t.timestamps
     end

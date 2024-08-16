@@ -3,15 +3,15 @@ class ProductsController < ApplicationController
 
   def index
     return find_products if params[:filter_value].present?
-    @products = Product.where(company_token: current_user.company_token).order(updated_at: :desc)
+    @products = current_user.company.products
   end
 
   def new
-    @product = Product.new
+    @product = current_user.company.products.build
   end
 
   def create
-    @product = Product.new(product_params.merge(company_token: current_user.company_token))
+    @product = current_user.company.products.build(product_params)
     return redirect_to product_path(@product) if @product.save
 
     render :new
@@ -42,16 +42,16 @@ class ProductsController < ApplicationController
   end
 
   def find_product
-    @product = Product.find_by(id: params[:id], company_token: current_user.company_token)
+    @product = current_user.company.products.find(params[:id])
   end
 
   def find_products
     column = params[:filter_column]
     value = params[:filter_value]
     if %w[stock price].include?(column)
-      @products = Product.where("company_token = ? AND #{column} = ?", current_user.company_token, value.to_f)
+      @products = Product.where("company_id = ? AND #{column} = ?", current_user.company_id, value.to_f)
     else
-      @products = Product.where("company_token = ? AND #{column} LIKE ?", current_user.company_token,"%#{value}%")
+      @products = Product.where("company_id = ? AND #{column} LIKE ?", current_user.company_id,"%#{value}%")
     end
   end
 

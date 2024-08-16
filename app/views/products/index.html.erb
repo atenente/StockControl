@@ -9,7 +9,7 @@
         <div class="col-auto me-1">
           <%=
             select_tag(:filter_column, options_for_select(Product.column_names
-              .reject { |col| ['id', 'company_token','created_at', 'updated_at'].include?(col) }
+              .reject { |col| ['id', 'company_id','created_at', 'updated_at'].include?(col) }
               .map { |col| [t("global.#{col}"), col] }), class: "form-select")
           %>
         </div>

@@ -5,7 +5,7 @@ Company.create!(
 
 token_company = Company.find_by(cnpj: '00000').token.to_s
 User.create!(
-  company_token: token_company,
+  company_id: token_company,
   email: 'admin@example.com',
   password: '123456',
   password_confirmation: '123456',

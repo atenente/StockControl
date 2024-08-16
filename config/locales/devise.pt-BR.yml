@@ -2,7 +2,7 @@ pt-BR:
   activerecord:
     attributes:
       user:
-        company_token: Senha da Empresa
+        company_id: Senha da Empresa
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em

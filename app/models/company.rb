@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
-  has_many :users, foreign_key: 'company_token', primary_key: 'token'
+  has_many :users
+  has_many :products
 
   before_create :generate_token
 
