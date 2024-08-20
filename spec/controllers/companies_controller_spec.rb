@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CompaniesController, type: :controller do
-  let!(:companies) { create(:company, :company_2) }
+  let!(:companies) { create(:company, :company2) }
   let(:admin) { create(:user, :admin) }
   let(:user) { create(:user) }
 
@@ -19,8 +19,8 @@ RSpec.describe CompaniesController, type: :controller do
       end
 
       it 'assigns filtered companies to @companies' do
-        get :index, params: { filter_column: 'name', filter_value: 'company2' }
-        expect(assigns(:companies).map(&:name)[0]).to eq('company2')
+        get :index, params: { filter_column: 'name', filter_value: companies.name }
+        expect(assigns(:companies)).to eq([companies])
       end
     end
   end

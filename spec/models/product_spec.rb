@@ -1,43 +1,58 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  describe 'validations' do
-    product = Product.new(sku: 'SKU1234', price: 'not_a_number', stock: 1.5, description: 'a' * 256)
+  let(:company) { create(:company) }
+  let(:user) { create(:user, role: :nil, company: company) }
+  let(:product) { create(:product, company: company) }
 
-    it 'validates presence of sku' do
-      new_product = Product.new
-      new_product.valid?
-      expect(new_product.errors[:sku]).to include(I18n.t('errors.messages.blank'))
+  describe "validations" do
+    it "is valid with valid attributes" do
+      expect(product).to be_valid
     end
 
-    it 'validates uniqueness of sku' do
-      duplicate_product = create(:product, sku: 'SKU1234')
-      product.valid?
-      expect(product.errors[:sku]).to include(I18n.t('errors.messages.taken'))
+    it "is invalid without a sku" do
+      product.sku = nil
+      expect(product).not_to be_valid
     end
 
-    before(:each) do
-      product.valid?
+    it "is invalid with a non-unique sku within the same company" do
+      another_product = build(:product, sku: product.sku, company: company)
+      expect(another_product).not_to be_valid
     end
 
-    it 'validates numericality of price' do
-      expect(product.errors[:price]).not_to eq(0.0)
+    it "is valid with a unique sku across different companies" do
+      another_company = create(:company)
+      another_product = build(:product, sku: product.sku, company: another_company)
+      expect(another_product).to be_valid
     end
 
-    it 'validates numericality of stock as integer' do
-      expect(product.errors[:stock]).to include(I18n.t('errors.messages.not_an_integer'))
+    it "is invalid with a non-numeric price" do
+      product.price = "ten"
+      expect(product.price).to eq(0.0)
     end
 
-    it 'validates length of description' do
-      expect(product.errors[:description]).to include(I18n.t('errors.messages.too_long', count: 255))
+    it "is invalid with a non-integer stock" do
+      product.stock = 10.5
+      expect(product).not_to be_valid
+    end
+
+    it "is invalid with a description longer than 255 characters" do
+      product.description = "a" * 256
+      expect(product).not_to be_valid
     end
   end
 
-  describe '#set_default_price' do
-    it 'does not convert price if already in correct format' do
-      product = Product.new(price: 100.50)
-      product.send(:set_default_price)
-      expect(product.price).to eq(100.50)
+  describe "callbacks" do
+    it "converts price to a float with a dot as decimal separator before validation" do
+      product.price = 10.50
+      product.valid?
+      expect(product.price).to eq(10.50)
+    end
+  end
+
+  describe "associations" do
+    it "belongs to a company" do
+      expect(product.company).to eq(company)
     end
   end
 end

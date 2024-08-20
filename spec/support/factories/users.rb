@@ -4,7 +4,7 @@ FactoryBot.define do
     password { 'password123' }
     password_confirmation { 'password123' }
     role { :user }
-    company_id { nil }
+    company_id { 'ZleoDFb' }
 
     association :company, factory: :company
 

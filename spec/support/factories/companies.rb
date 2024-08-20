@@ -8,7 +8,7 @@ FactoryBot.define do
     zip_code { "teste" }
     cnpj { Faker::Number.number(digits: 10).to_i }
 
-    trait :company_2 do
+    trait :company2 do
       token { 'ZleoDFb' }
       name { "company2" }
       address { "teste2" }
