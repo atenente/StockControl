@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
-  has_many :users
-  has_many :products
+  has_many :users, dependent: :destroy
+  has_many :products, dependent: :destroy
 
   before_create :generate_token
 

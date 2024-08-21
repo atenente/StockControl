@@ -9,9 +9,9 @@ class User < ApplicationRecord
   private
 
   def validate_company_id
-    return true if role == 'admin'
+    return if role == 'admin'
     unless Company.exists?(token: company_id)
-      errors.add(:company_id, "is invalid. Please provide a valid company token.")
+      errors.add(:company_id, I18n.t('errors.messages.token_invalid'))
     end
   end
 

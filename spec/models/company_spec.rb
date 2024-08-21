@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Company, type: :model do
   let(:company) { create(:company) }
-  let(:user) { create(:user, role: :user, company: company) }
+  let(:admin) { create(:user, role: :admin, company: company) }
+  let(:user_user) { create(:user, role: :user, company: company) }
   let(:product) { create(:product, company: company) }
 
   describe "validations" do

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe CompaniesController, type: :controller do
   let!(:companies) { create(:company, :company2) }
-  let(:admin) { create(:user, :admin) }
-  let(:user) { create(:user) }
+  let(:admin) { create(:user, role: :admin) }
+  let!(:user_user) { create(:user, role: :user, company: companies) }
 
   describe 'GET #index' do
     context 'With role admin' do
