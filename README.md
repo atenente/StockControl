@@ -1,7 +1,7 @@
 # STOCK CONTROL
 
-[![Ruby](https://img.shields.io/badge/Ruby%20on%20Rails-v3.2-red)](https://rubyonrails.org/)
-[![Rails](https://img.shields.io/badge/Ruby%20on%20Rails-v7.1-red)](https://rubyonrails.org/)
+[![Ruby](https://img.shields.io/badge/Ruby-v3.2-red)](https://www.ruby-lang.org/)
+[![Rails](https://img.shields.io/badge/Rails-v7.1-red)](https://rubyonrails.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v14-blue)](https://www.postgresql.org/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-v5.3-purple)](https://getbootstrap.com/)
 
@@ -20,7 +20,6 @@ Este projeto está **em construção** e novas funcionalidades e melhorias estã
 - [ ] **Importação de Dados em Massa**: Importação em massa de dados em produtos.
 - [ ] **Inserção de Imagens**: Upload de imagens para os logos de empresas e produtos.
 - [ ] **Envio de Relatórios por Email**: Geração e envio automatizado de e-mail.
-<br>
 - ♾️ Testes e melhorias.
 
 ## 🛠️ Principais Tecnologias Utilizadas
