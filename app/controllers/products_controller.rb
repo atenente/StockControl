@@ -43,6 +43,8 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = current_user.company.products.find(params[:id])
+  rescue
+    redirect_to root_path, alert: t('messages.not_found')
   end
 
   def find_products

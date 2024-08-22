@@ -30,6 +30,9 @@ pt-BR:
     city: Cidade
     state: Estado
     cnpj: CNPJ
+  messages:
+    unauthorized: 'Sem autorização para acessar esta página.'
+    not_found: 'Não Encontrado'
   homes:
     index:
       products_summary: Resumo dos produtos

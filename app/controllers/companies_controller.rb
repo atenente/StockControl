@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :find_company, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_company
 
   def index
     return find_companies if params[:filter_value].present?
@@ -43,10 +44,16 @@ class CompaniesController < ApplicationController
 
   def find_company
     @company = Company.find(params[:id])
+  rescue
+    redirect_to root_path, alert: t('messages.not_found')
   end
 
   def find_companies
     @companies = Company.where("#{params[:filter_column]}::text LIKE ?", "%#{params[:filter_value]}%")
+  end
+
+  def authorize_company
+    authorize @company || Company
   end
 
 end
