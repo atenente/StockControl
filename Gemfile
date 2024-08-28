@@ -49,6 +49,8 @@ gem 'devise', '~> 4.2'
 
 gem "pundit", "~> 2.3"
 
+gem 'roo', '~> 2.7', '>= 2.7.1'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

@@ -32,6 +32,9 @@ Este projeto está **em construção** e novas funcionalidades e melhorias estã
 - **RSpec** - Testes automaticos.
 - **Bootstrap** - Framework CSS para estilização
 
+## 🔗 Diagrama Relacional do Banco de Dados
+[Clique aqui](https://dbdiagram.io/d/Diagram-Stock-Control-66c681a5a346f9518cbad68d) para visualizar o diagrama relacional do banco de dados em formato gráfico, facilitando o entendimento da estrutura das tabelas e seus relacionamentos.
+
 ## 🚀 Como Rodar o Projeto
 
 ### Pré-requisitos
