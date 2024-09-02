@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  belongs_to :company, foreign_key: 'token', foreign_key: 'company_id'
+  belongs_to :company
+  has_many :sales
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 

@@ -1,0 +1,20 @@
+<%= simple_form_for sale do |form| %>
+  <div class="d-flex">
+    <div class="col-md-11">
+      <%= form.input :product_id, collection: current_user.company.products, label: t('global.sku'), as: :select, label_method: :sku, value_method: :id %>
+      <%= form.input :quantity %>
+      <%= form.input :total_quantity %>
+      <%= form.input :total_value %>
+      <%= form.input :payment_method %>
+      <%= form.input :payment_split %>
+      <%= form.input :payment_local %>
+      <%= form.input :others %>
+    </div>
+  </div>
+  <div class="col-md-11">
+    <div class="d-flex justify-content-between">
+      <%= form.button :submit, class: 'btn btn-primary', data: { turbo: false } %>
+      <%= link_to t('global.back'), sales_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

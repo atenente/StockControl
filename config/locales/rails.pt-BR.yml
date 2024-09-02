@@ -7,6 +7,9 @@ pt-BR:
       company: 
         one: Empresa
         other: Empresas
+      sale:
+        one: Venda
+        other: Vendas
     attributes:
       product:
         sku: Código SKU
@@ -25,6 +28,16 @@ pt-BR:
         city: Cidade
         state: Estado
         cnpj: CNPJ
+      sale:
+        sku: Códigos de Barra
+        quantity: Quantidade
+        price: Preço
+        total_quantity: Quantidade total
+        total_value: Valor total
+        payment_method: Forma de pagamento
+        payment_split: Parcelamento
+        payment_local: Local da Venda
+        others: Outros
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-  belongs_to :company, foreign_key: 'company_id', foreign_key: 'company_id'
+  belongs_to :company
+  has_many :sales
 
   before_validation :set_default_price
 

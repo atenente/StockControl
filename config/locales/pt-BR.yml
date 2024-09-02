@@ -1,5 +1,9 @@
 pt-BR:
   global:
+    company_id: Empresa
+    product_id: Produto
+    user_id: Usuário
+    sale: Venda
     home: Início
     search: Procurar
     back: Voltar
@@ -12,7 +16,7 @@ pt-BR:
     quantity: Quantidade
     stock: Estoque
     value: Valor
-    sku: Código SKU
+    sku: Código de Barra
     description: Descrição
     price: Preço
     stock: Estoque
@@ -30,6 +34,12 @@ pt-BR:
     city: Cidade
     state: Estado
     cnpj: CNPJ
+    total_quantity: Quantidade total
+    total_value: Valor total
+    payment_method: Forma de pagamento
+    payment_split: Parcelamento
+    payment_local: Local da Venda
+    others: Outros
   messages:
     unauthorized: 'Sem autorização para acessar esta página.'
     not_found: 'Não Encontrado'
@@ -46,7 +56,7 @@ pt-BR:
     new:
       create_product: Criar Produto
     show:
-      detail_ product: Detalhe do Produto
+      detail_product: Detalhe do Produto
   companies:
     companies: Empresas
     company: Empresa
@@ -57,4 +67,16 @@ pt-BR:
     new:
       create_company: Criar Empresa
     show:
-      detail_ company: Detalhe da Empresa
+      detail_company: Detalhe da Empresa
+  sales:
+    sales: Vendas
+    sale: Venda
+    edit:
+      edit_sale: Editar Venda
+    index:
+      all_sales: Todas as Vendas
+    new:
+      create_sale: Criar Venda
+    show:
+      detail_sale: Detalhe da Venda
+

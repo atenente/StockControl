@@ -1,0 +1,21 @@
+<tbody>
+  <tr>
+    <td class="border"><%= sale.sku %></td>
+    <td class="border"><%= sale.quantity %></td>
+    <td class="border"><%= sale.price %></td>
+    <td class="border"><%= sale.total_quantity %></td>
+    <td class="border"><%= sale.total_value %></td>
+    <td class="border"><%= sale.payment_method %></td>
+    <td class="border"><%= sale.payment_split %></td>
+    <td class="border"><%= sale.payment_local %></td>
+    <td class="border"><%= sale.others %></td>
+    <% if params[:action] == 'index' %>
+      <td class="border"><%= link_to  t('global.detail'), sale_path(sale) %></td>
+      <td class="border"><%= link_to t('global.edit'), edit_sale_path(sale), data: { turbo: false } %></td>
+    <% elsif params[:action] == 'show' %>
+      <td colspan='2' class="border">
+        <%= t('global.last_update') %>: <%= l(@sale.updated_at, format: :br) %>
+      </td>
+    <% end %>
+  </tr>
+</tbody>
