@@ -5,21 +5,7 @@
   <%= link_to t('companies.new.create_company'), new_company_path, class: 'btn btn-success', data: { turbo: false } %>
   <br><br>
   <div class="mb-1">
-    <%= form_tag( companies_path, method: :get, data: { turbo_frame: 'search' }, class: "row g-2" ) do %>
-      <div class="col-auto">
-        <%=
-          select_tag(:filter_column, options_for_select(Company.column_names
-            .reject { |col| ['id', 'token', 'created_at', 'updated_at'].include?(col) }
-            .map { |col| [t("global.#{col}"), col] }), class: "form-select")
-        %>
-      </div>
-      <div class="col">
-        <%= text_field_tag(:filter_value, nil, placeholder: t('global.search_by_item'), class: "form-control") %>
-      </div>
-      <div class="col-auto">
-        <%= submit_tag(t('global.search'), class: "btn btn-primary") %>
-      </div>
-    <% end %>
+    <%= render  "shared/search_element" %>
   </div>
   <div class="table-responsive-md">
     <%= turbo_frame_tag 'search' do %>

@@ -1,0 +1,16 @@
+
+<%= form_tag( "/#{controller_name}", method: :get, data: { turbo_frame: 'search' } ,class: "row g-2") do %>
+  <div class="col-auto">
+    <%=
+      select_tag(:filter_column, options_for_select(Object.const_get(controller_name.singularize.capitalize).column_names
+        .reject { |col| ['id', 'company_id','created_at', 'updated_at'].include?(col) }
+        .map { |col| [t("global.#{col}"), col] }), class: "form-select")
+    %>
+  </div>
+  <div class="col">
+    <%= text_field_tag(:filter_value, nil, placeholder: t('global.search_by_item'), class: "form-control") %>
+  </div>
+  <div class="col-auto">
+    <%= submit_tag(t('global.search'), class: "btn btn-primary") %>
+  </div>
+<% end %>

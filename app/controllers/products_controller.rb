@@ -50,11 +50,7 @@ class ProductsController < ApplicationController
   def find_products
     column = params[:filter_column]
     value = params[:filter_value]
-    if %w[stock price].include?(column)
-      @products = Product.where("company_id = ? AND #{column} = ?", current_user.company_id, value.to_f)
-    else
-      @products = Product.where("company_id = ? AND #{column} LIKE ?", current_user.company_id,"%#{value}%")
-    end
-  end
 
+    @products = Poros::Search.call(target_class: Product, company_id:, column:, value:)
+  end
 end
