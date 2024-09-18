@@ -20,13 +20,7 @@
       </div>
     <% end %>
   </div>
-  <div class="table-responsive-md">
-    <%= turbo_frame_tag 'search' do %>
-      <table class="table">
-        <%= render 'header_sale' %>
-        <%= render @sales %>
-      </table>
-    <% end  %>
-  </div>
+  <%= turbo_frame_tag 'search' do %>
+    <%= render 'sale' %>
+  <% end  %>
 </div>
-

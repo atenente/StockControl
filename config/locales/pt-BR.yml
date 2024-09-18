@@ -3,6 +3,8 @@ pt-BR:
     company_id: Empresa
     product_id: Produto
     user_id: Usuário
+    sale_id: Venda
+    invoice_id: Cupom
     sale: Venda
     home: Início
     search: Procurar
@@ -34,6 +36,7 @@ pt-BR:
     city: Cidade
     state: Estado
     cnpj: CNPJ
+    totals: Totais
     total_quantity: Quantidade total
     total_value: Valor total
     payment_method: Forma de pagamento
@@ -43,6 +46,9 @@ pt-BR:
   messages:
     unauthorized: 'Sem autorização para acessar esta página.'
     not_found: 'Não Encontrado'
+    success: 'Ação bem sucedida'
+    failure: 'Ação falhou'
+    invoice_empty: 'Sem itens para adicionar'
   homes:
     index:
       products_summary: Resumo dos produtos
@@ -77,6 +83,12 @@ pt-BR:
       all_sales: Todas as Vendas
     new:
       create_sale: Criar Venda
+      register_sale: Registrar Produto
+      choice_sku: Escolha um Produto
+      finalize_sale: Finalizar Venda
     show:
       detail_sale: Detalhe da Venda
+  invoices:
+    invoices: Cupom
+    invoice: Cupom
 

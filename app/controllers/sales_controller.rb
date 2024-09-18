@@ -1,23 +1,30 @@
 class SalesController < ApplicationController
   before_action :find_sale, only: [:show, :edit, :update, :destroy]
+  before_action :load_variables, only: [:index ,:new, :create]
 
   def index
     return find_sales if params[:filter_value].present?
-    @sales = current_user.company.sales
+    @sales = current_user.company.sales.where.not(invoice_id: nil).order(invoice_id: :desc)
   end
 
   def new
-    @sale = current_user.company.sales.build
+    @sale = Sale.new
   end
 
   def create
-
     @sale = current_user.company.sales.build(sale_params)
     @sale.user_id = current_user.id
-    @sale.sku = Product.find(@sale.product_id).sku
-    return redirect_to sale_path(@sale) if @sale.save
+    unless @sale.product_id.nil?
+      product = Product.find(@sale.product_id)
+      @sale.price = product.price
+      @sale.sum_price = (product.price.to_f * @sale.quantity)
+    end
 
-    render :new
+    if @sale.save
+      redirect_to new_sale_path, notice: t('messages.success')
+    else
+      render :new
+    end
   end
 
   def show
@@ -35,13 +42,19 @@ class SalesController < ApplicationController
   def destroy
     @sale.destroy
 
-    redirect_to sales_path
+    redirect_to new_sale_path
   end
 
   private
 
+  def load_variables
+    @invoice = Invoice.new
+    @products = current_user.company.products
+    @sales = current_user.company.sales.where(invoice_id: nil, user_id: current_user.id)
+  end
+
   def sale_params
-    params.require(:sale).permit(:product_id, :quantity, :price, :total_quantity, :total_value, :payment_method, :payment_split, :others)
+    params.require(:sale).permit(:product_id, :quantity)
   end
 
   def find_sale

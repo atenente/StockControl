@@ -31,13 +31,14 @@ pt-BR:
       sale:
         sku: Códigos de Barra
         quantity: Quantidade
-        price: Preço
-        total_quantity: Quantidade total
-        total_value: Valor total
-        payment_method: Forma de pagamento
-        payment_split: Parcelamento
+        price: Preço Uni
+        sum_price: Preço Total
+      invoice:
+        payment_method: Tipo de Pagamento
         payment_local: Local da Venda
-        others: Outros
+        payment_split: Parcelas
+        total_value: Valor Total
+        total_quantity: Quantidade Total
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
