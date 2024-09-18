@@ -1,0 +1,23 @@
+<%= simple_form_for invoice, local: true do |form| %>
+  <div class="d-flex flex-row align-items-center">
+    <div class="field">
+      <%= form.input :payment_method, collection: ['cash', 'card'], as: :select %>
+    </div>
+    <div class="field">
+      <%= form.input :payment_local, collection: ['store', 'site'], as: :select %>
+    </div>
+    <div class="field">
+      <%= form.input :payment_split, as: :numeric, input_html: { min: 1 }%>
+    </div>
+    <label for="valor">Quantidade</label>
+    <%= number_to_currency(@sales.map{|p| p['quantity'].to_i}.sum, unit: '') %>
+    <label for="valor">valor</label>
+    <%= number_to_currency(@sales.map{|p| p['sum_price'].to_f}.sum) %>
+
+    <% if @sales.count > 0 %>
+      <div class="actions align-self-center mt-3">
+        <%= form.button :submit, t('sales.new.finalize_sale'), class: "btn btn-success btn-sm" %>
+      </div>
+    <% end  %>
+  </div>
+<% end %>

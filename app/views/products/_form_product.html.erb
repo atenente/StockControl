@@ -1,4 +1,4 @@
-<%= simple_form_for product do |form| %>
+<%= simple_form_for product, local: true do |form| %>
   <div class="d-flex">
     <div class="col-md-11">
       <%= form.input :sku, input_html: { placeholder: '*78912345678910*' } %>

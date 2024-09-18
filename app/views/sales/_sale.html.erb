@@ -1,21 +1,59 @@
-<tbody>
-  <tr>
-    <td class="border"><%= sale.sku %></td>
-    <td class="border"><%= sale.quantity %></td>
-    <td class="border"><%= sale.price %></td>
-    <td class="border"><%= sale.total_quantity %></td>
-    <td class="border"><%= sale.total_value %></td>
-    <td class="border"><%= sale.payment_method %></td>
-    <td class="border"><%= sale.payment_split %></td>
-    <td class="border"><%= sale.payment_local %></td>
-    <td class="border"><%= sale.others %></td>
-    <% if params[:action] == 'index' %>
-      <td class="border"><%= link_to  t('global.detail'), sale_path(sale) %></td>
-      <td class="border"><%= link_to t('global.edit'), edit_sale_path(sale), data: { turbo: false } %></td>
-    <% elsif params[:action] == 'show' %>
-      <td colspan='2' class="border">
-        <%= t('global.last_update') %>: <%= l(@sale.updated_at, format: :br) %>
-      </td>
+<div class="table-responsive-sm">
+  <table class="table table-sm">
+    <thead>
+      <tr class="table-primary border border-dark">
+        <th><%= t('global.sku') %></th>
+        <th><%= t('global.description') %></th>
+        <th class="text-center"><%= t('global.price') %></th>
+        <th class="text-center"><%= t('global.quantity') %></th>
+        <th class="text-center"><%= t('global.value') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @sales.group_by{|r| r['invoice_id'] }.each do |i, total_invoice| %>
+      <tbody>
+        <tr class="table-active">
+          <th>Total <%= t('global.invoice_id') %> <%= total_invoice.first.invoice_id %></th>
+          <th></th>
+          <th></th>
+          <th class="text-center"><%= number_to_currency(total_invoice.map{|p| p['quantity'].to_i}.sum, unit: '') %></th>
+          <th class="text-center"><%= number_to_currency(total_invoice.map{|p| p['sum_price'].to_i}.sum) %></th>
+          <th>
+            <% if params[:action] == 'index' %>
+              Edit
+            <% end %>
+          </th>
+        </tr>
+      </tbody>
+      <% total_invoice.group_by{|r| [r['invoice_id'], r['product_id']] }.each do |i, total_item| %>
+        <tbody>
+          <tr>
+            <td><b>Total item: </b><%= @products.find(total_item.first.product_id).sku %></td>
+            <td><%= @products.find(total_item.first.product_id).description %></td>
+            <td></td>
+            <td class="text-center"><%= number_to_currency(total_item.map{|p| p['quantity'].to_i}.sum, unit: '') %></td>
+            <td class="text-center"><%= number_to_currency(total_item.map{|p| p['sum_price'].to_f }.sum) %></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <% total_item.each do |item| %>
+          <tbody>
+            <tr>
+              <td colspan="2"></td>
+              <td class="text-center"><%= number_to_currency(item.price) %></td>
+              <td class="text-center"><%= number_to_currency(item.quantity, unit: '') %></td>
+              <td class="text-center"><%= number_to_currency(item.sum_price) %></td>
+              <td>
+                <% if params[:action] == 'new' %>
+                  <%= link_to item, class: 'btn btn-danger btn-sm', data: { turbo_method: :delete, turbo_confirm: "#{t('global.confirm_delete')}" } do %>
+                  <i class="bi bi-trash-fill"></i>
+                <% end %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% end %>
     <% end %>
-  </tr>
-</tbody>
+  </table>
+</div>

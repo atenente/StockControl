@@ -1,5 +1,15 @@
 <div class="container">
-  <h1><%= t('.create_sale') %></h1>
-
-  <%= render 'form_sale', sale: @sale %>
+  <div class="card text-center mt-1">
+    <h5 class="card-header"><%= t('global.search') %></h5>
+    <div class="card-body">
+      <%= render 'form_search_sale', sale: @sale %>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <h5 class="card-header"><%= t('invoices.invoice') %></h5>
+    <div class="card-body">
+      <%= render 'invoices/invoice', invoice: @invoice %>
+      <%= render 'sale' %>
+    </div>
+  </div>
 </div>
