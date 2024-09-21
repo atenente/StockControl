@@ -29,6 +29,7 @@ pt-BR:
         state: Estado
         cnpj: CNPJ
       sale:
+        product_id: produto
         sku: Códigos de Barra
         quantity: Quantidade
         price: Preço Uni

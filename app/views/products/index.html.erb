@@ -8,10 +8,10 @@
   </div>
   <div class="table-responsive-md">
     <%= turbo_frame_tag 'search' do %>
-      <table class="table">
+      <table class="table text-nowrap">
         <%= render 'header_product' %>
         <%= render @products %>
-      </table>
+      </table> 
     <% end  %>
   </div>
 </div>

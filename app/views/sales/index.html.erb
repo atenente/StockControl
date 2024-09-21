@@ -7,6 +7,10 @@
     <%= render  "shared/search_element" %>
   </div>
   <%= turbo_frame_tag 'search' do %>
-    <%= render 'sale' %>
+    <div class="card">
+      <div class="card-body p-1">
+        <%= render 'sale', sales: @sales %>
+      </div>
+    </div>
   <% end  %>
 </div>

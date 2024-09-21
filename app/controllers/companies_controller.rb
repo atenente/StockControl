@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
-  before_action :find_company, only: [:show, :edit, :update, :destroy]
   before_action :authorize_company
+  before_action :find_company, only: [:show, :edit, :update, :destroy]
 
   def index
     return find_companies if params[:filter_value].present?

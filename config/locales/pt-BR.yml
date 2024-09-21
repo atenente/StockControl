@@ -47,6 +47,8 @@ pt-BR:
     unauthorized: 'Sem autorização para acessar esta página.'
     not_found: 'Não Encontrado'
     success: 'Ação bem sucedida'
+    destroy_success: 'Deletado'
+    not_destroy_success: 'Não Deletado'
     failure: 'Ação falhou'
     invoice_empty: 'Sem itens para adicionar'
   homes:

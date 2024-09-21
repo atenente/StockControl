@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
-  before_action :find_sale, only: [:show, :edit, :update, :destroy]
-  before_action :load_variables, only: [:index ,:new, :create]
+  before_action :load_variables, only: [:index ,:new, :create, :edit]
+  before_action :find_sale, only: [:destroy]
 
   def index
     return find_sales if params[:filter_value].present?
@@ -8,41 +8,36 @@ class SalesController < ApplicationController
   end
 
   def new
-    @sale = Sale.new
+    load_sales
+    load_sale
   end
 
   def create
-    @sale = current_user.company.sales.build(sale_params)
+    load_sales
+    load_sale(sale_params)
     @sale.user_id = current_user.id
-    unless @sale.product_id.nil?
-      product = Product.find(@sale.product_id)
-      @sale.price = product.price
-      @sale.sum_price = (product.price.to_f * @sale.quantity)
-    end
+    invoice_id = params[:sale][:invoice_id].to_i
 
     if @sale.save
+      return redirect_to edit_sale_path(invoice_id), notice: t('messages.success') if !invoice_id.zero?
       redirect_to new_sale_path, notice: t('messages.success')
     else
+      return redirect_to edit_sale_path(invoice_id), alert: t('messages.failure') if !invoice_id.zero?
       render :new
     end
   end
 
-  def show
-  end
-
   def edit
-  end
-
-  def update
-    return redirect_to sale_path(@sale) if @sale.update(sale_params)
-
-    render :edit
+    load_sales(params[:id])
+    load_sale
+    unless @sales.present?
+      redirect_to sales_path
+    end
   end
 
   def destroy
     @sale.destroy
-
-    redirect_to new_sale_path
+    redirect_back(fallback_location: sales_path, notice: t('messages.destroy_success'))
   end
 
   private
@@ -50,11 +45,22 @@ class SalesController < ApplicationController
   def load_variables
     @invoice = Invoice.new
     @products = current_user.company.products
-    @sales = current_user.company.sales.where(invoice_id: nil, user_id: current_user.id)
+  end
+
+  def load_sales(invoice = nil, user = current_user.id)
+    if invoice
+      @sales = current_user.company.sales.where(invoice_id: invoice)
+    else
+      @sales = current_user.company.sales.where(invoice_id: invoice, user_id: user)
+    end
+  end
+
+  def load_sale(sale_params = nil)
+    @sale = current_user.company.sales.build(sale_params)
   end
 
   def sale_params
-    params.require(:sale).permit(:product_id, :quantity)
+    params.require(:sale).permit(:product_id, :quantity, :invoice_id)
   end
 
   def find_sale
@@ -66,11 +72,8 @@ class SalesController < ApplicationController
   def find_sales
     column = params[:filter_column]
     value = params[:filter_value]
-    if %w[stock price].include?(column)
-      @sales = Sale.where("company_id = ? AND #{column} = ?", current_user.company_id, value.to_f)
-    else
-      @sales = Sale.where("company_id = ? AND #{column} LIKE ?", current_user.company_id,"%#{value}%")
-    end
+
+    @sales = Poros::Search.call(target_class: Sales, company_id:, column:, value:)
   end
 
 end

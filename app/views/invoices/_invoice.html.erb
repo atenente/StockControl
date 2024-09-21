@@ -1,23 +1,32 @@
 <%= simple_form_for invoice, local: true do |form| %>
-  <div class="d-flex flex-row align-items-center">
-    <div class="field">
+  <div class="row text-nowrap">
+    <div class="col-sm">
       <%= form.input :payment_method, collection: ['cash', 'card'], as: :select %>
     </div>
-    <div class="field">
+    <div class="col-sm">
       <%= form.input :payment_local, collection: ['store', 'site'], as: :select %>
     </div>
-    <div class="field">
-      <%= form.input :payment_split, as: :numeric, input_html: { min: 1 }%>
+    <div class="col-sm">
+      <%= form.input :payment_split, as: :numeric, input_html: { min: 1 } %>
     </div>
-    <label for="valor">Quantidade</label>
-    <%= number_to_currency(@sales.map{|p| p['quantity'].to_i}.sum, unit: '') %>
-    <label for="valor">valor</label>
-    <%= number_to_currency(@sales.map{|p| p['sum_price'].to_f}.sum) %>
-
-    <% if @sales.count > 0 %>
-      <div class="actions align-self-center mt-3">
-        <%= form.button :submit, t('sales.new.finalize_sale'), class: "btn btn-success btn-sm" %>
-      </div>
-    <% end  %>
   </div>
+  <% if @sales.present? %>
+    <div div class="row">
+      <div class="col">
+        <dl class="row">
+          <dt class="col-sm-5">Quantidade</dt>
+          <dd class="col-sm-5"><%= number_to_currency(@sales.map{|p| p['quantity'].to_i}.sum, unit: '', precision: 0) %></dd>
+          <dt class="col-sm-5">Valor</dt>
+          <dd class="col-sm-5"><%= number_to_currency(@sales.map{|p| p['sum_price'].to_f}.sum) %></dd>
+          <dt class="col-sm-5">Itens</dt>
+          <dd class="col-sm-5"><%= number_to_currency(@sales.map{|p| p['product_id']}.count, unit: '', precision: 0) %></dd>
+        </dl>
+      </div>
+      <div class="col-sm-2 position-relative">
+        <div class="actions p-3 position-absolute bottom-0 end-0">
+          <%= form.button :submit, t('sales.new.finalize_sale'), class: "btn btn-success btn-sm" %>
+        </div>
+      </div>
+    </div>
+  <% end  %>
 <% end %>

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   belongs_to :company
   has_many :sales
+  has_many :invoices
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
