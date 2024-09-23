@@ -6,8 +6,8 @@ class Invoice < ApplicationRecord
   validates :payment_method, :payment_local, :payment_split,presence: true
   validates_numericality_of :payment_split, greater_than: 0
 
-  before_save :populate_values_on_invoice
-  after_save :populate_invoice_on_sales
+  before_create :populate_values_on_invoice
+  after_create :populate_invoice_on_sales
 
   private
 
@@ -20,6 +20,6 @@ class Invoice < ApplicationRecord
   end
 
   def populate_invoice_on_sales
-    Sale.where(invoice_id: nil,user_id: user.id).update_all(invoice_id: self.id)
+    Sale.where(invoice_id: nil, user_id: user.id).update_all(invoice_id: self.id)
   end
 end
