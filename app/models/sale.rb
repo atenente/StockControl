@@ -39,7 +39,6 @@ class Sale < ApplicationRecord
 
   def calculate_values_to_invoice(operator)
     invoice = Invoice.find(self.invoice_id)
-    binding.break
     new_total_quantity = invoice.total_quantity.send(operator, self.quantity)
     new_total_value = invoice.total_value.send(operator, self.sum_price)
     invoice.update(total_quantity: new_total_quantity, total_value: new_total_value)
