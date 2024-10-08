@@ -1,0 +1,13 @@
+<div class="container">
+  <%= render 'sales/form_create_sale', sale: Sale.new(invoice_id: @invoice.id) %>
+  <div class="card mb-2 mt-2">
+    <div class="card-body p-1">
+      <%= render 'invoice', invoice: @invoice %>
+      <%= render 'detail_form_invoice', invoice: @invoice %>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <%= link_to t('global.back'), invoices_path, class: 'btn btn-secondary' %>
+    <%= link_to t('global.delete')+' '+t('global.invoice_id'), @invoice, class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "#{t('global.confirm_delete')}" } %>
+  </div>
+</div>

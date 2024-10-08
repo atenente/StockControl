@@ -3,7 +3,7 @@ class Invoice < ApplicationRecord
   belongs_to :user
   has_many :sales, dependent: :destroy
 
-  validates :payment_method, :payment_local, :payment_split,presence: true
+  validates :payment_method, :payment_local, :payment_split, presence: true
   validates_numericality_of :payment_split, greater_than: 0
 
   before_create :populate_values_on_invoice
@@ -12,7 +12,7 @@ class Invoice < ApplicationRecord
   private
 
   def populate_values_on_invoice
-    sales = Sale.where(invoice_id: nil,user_id: user.id)
+    sales = Sale.where(invoice_id: nil, user_id: user.id)
     self.total_quantity = sales.sum(:quantity)
     self.total_value = sales.sum(:sum_price)
     self.user_id = user.id

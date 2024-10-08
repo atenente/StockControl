@@ -1,4 +1,4 @@
-<h2><%= t("global.detail") %></h2>
+<h2><%= t("invoices.show.detail_invoice") %></h2>
 <div class="table-responsive-sm text-nowrap">
   <table class="table table-hover">
     <thead>
@@ -12,7 +12,7 @@
       <tr>
     </thead>
     <tbody>
-      <% sales.group_by{|sale| sale.product_id }.each do |product_id, sales_group| %>
+      <% invoice.sales.group_by{|sale| sale.product_id }.each do |product_id, sales_group| %>
         <tr class="table-info">
           <td class="border-bottom border-dark"><b>Total item: </b><%= sales_group.last.product.sku %></td>
           <td class="border-bottom border-dark text-center"><%= sales_group.last.product.description %></td>
@@ -30,11 +30,11 @@
             <td class="border-end border-dark"><%= number_to_currency(sale.sum_price) %></td>
             <td class="border-0">
               <% if params[:action] != 'index' %>
-                <%= link_to sale, class: 'btn btn-danger btn-sm', data: { turbo_method: :delete } do %>
+                <%= link_to sale, class: 'btn btn-danger btn-sm', data: { turbo_method: :delete, turbo_confirm: "#{t('global.confirm_delete')}" } do %>
                   <i class="bi bi-trash-fill"></i>
                 <% end %>
               <% end %>
-            </td>
+            </td> 
           </tr>
         <% end  %>
       <% end %>

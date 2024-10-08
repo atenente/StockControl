@@ -10,6 +10,9 @@ pt-BR:
       sale:
         one: Venda
         other: Vendas
+      invoice:
+        one: Cupom
+        other: Cupons
     attributes:
       product:
         sku: Código SKU

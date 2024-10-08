@@ -14,7 +14,7 @@
           <%= link_to t('products.products'), products_path, class: "nav-link #{'active' if controller_name == 'products'}" %>
         </li>
         <li class="nav-item">
-          <%= link_to t('sales.sales'), sales_path, class: "nav-link #{'active' if controller_name == 'sales'}" %>
+          <%= link_to t('invoices.invoices'), invoices_path, class: "nav-link #{'active' if controller_name == 'invoices'}" %>
         </li>
         <% if current_user&.admin? %>
           <li class="nav-item">

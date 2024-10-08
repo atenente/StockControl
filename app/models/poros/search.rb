@@ -9,6 +9,5 @@ class Poros::Search
     return [' = ', value.to_f] if %w[stock price].include?(column)
 
     [' ILIKE ', "%#{value}%"]
-    end
   end
 end

@@ -1,0 +1,46 @@
+<div class="table-responsive-sm text-nowrap">
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-dark border-2">  
+        <th><%= t('invoices.invoices') %></th>
+        <th><%= t('global.sku') %></th>
+        <th class="text-center"><%= t('global.description') %></th>
+        <th class="text-center"><%= t('global.price') %></th>
+        <th class="text-center"><%= t('global.quantity') %></th>
+        <th class="text-center"><%= t('global.value') %></th>
+        <th></th>
+      <tr>
+    </thead>
+    <tbody>
+      <% invoices.each do |invoice| %>
+        <tr class="table-info border-2">
+          <th><%= invoice.id %></th>
+          <th colspan="3"></th>
+          <th class="text-center"><%= number_to_currency(invoice.total_quantity, unit: '', precision: 0) %></th>
+          <th class="text-center"><%= number_to_currency(invoice.total_value) %></th>
+          <th><%= link_to  t('global.detail'), invoice_path(invoice), class: 'btn btn-warning btn-sm', data: {turbo: false },  data: { turbo: false } %></th>
+        </tr>
+        <% invoice.sales.group_by{|sale| sale.product_id }.each do |product_id, sales_group| %>
+          <tr class="table-info">
+            <td class="bg-transparent border-0"></td>
+            <td class="border-start border-dark"><b>Total item: </b><%= sales_group.last.product.sku %></td>
+            <td class="border-bottom border-dark text-center"><%= sales_group.last.product.description %></td>
+            <td></td>
+            <td class="text-center"><%= number_to_currency(sales_group.map{|p| p['quantity'].to_i}.sum, unit: '', precision: 0) %></td>
+            <td class="text-center"><%= number_to_currency(sales_group.map{|p| p['sum_price'].to_f }.sum) %></td>
+            <td class="bg-transparent border-0"></td>
+          </tr>
+          <% sales_group.each do |sale|  %>
+            <tr class="text-center">
+              <td colspan="3" class="border-0"></td>
+              <td><%= number_to_currency(sale.price) %></td>
+              <td><%= number_to_currency(sale.quantity, unit: '', precision: 0) %></td>
+              <td><%= number_to_currency(sale.sum_price) %></td>
+              <td class="border-0"></td>
+            </tr>
+          <% end  %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

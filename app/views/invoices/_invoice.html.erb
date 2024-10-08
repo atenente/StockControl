@@ -1,32 +1,41 @@
-<%= simple_form_for invoice, local: true do |form| %>
-  <div class="row text-nowrap">
-    <div class="col-sm">
-      <%= form.input :payment_method, collection: ['cash', 'card'], as: :select %>
+<div class="table-responsive-sm text-nowrap">
+  <%= simple_form_for invoice, local: true do |form| %>
+    <table class="table">
+      <thead>
+        <tr class="table-dark border-2">
+          <% if params[:action] == 'show' %>
+            <th><%= t('invoices.invoice') %></th>
+            <th><%= t('global.created_at') %></th>
+          <% end %>
+          <th><%= t('invoices.payment_method') %></th>
+          <th><%= t('invoices.payment_local') %></th>
+          <th class="text-center"><%= t('invoices.total_quantity') %></th>
+          <th class="text-center"><%= t('invoices.total_value') %></th>
+          <th class="text-center"><%= t('invoices.payment_split') %></th>
+          <% if params[:action] == 'show' %>
+            <th><%= t('global.updated_at') %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% if params[:action] == 'show' %>
+            <th><%= invoice.id %></th>
+            <th><%= l(invoice.created_at, format: :br) %></th>
+          <% end %>
+          <th><%= form.input :payment_method, label: false, collection: ['cash', 'card'], as: :select %></th>
+          <th><%= form.input :payment_local, label: false, collection: ['store', 'site'], as: :select %></th>
+          <th class="text-center"><%= number_to_currency(invoice.total_quantity, unit: '', precision: 0) %></th>
+          <th class="text-center"><%= number_to_currency(invoice.total_value) %></th>
+          <th class="text-center"><%= form.input :payment_split, label: false, as: :integer, input_html: { min: 1, step: 1} %></th>
+          <% if params[:action] == 'show' %>
+            <th><%= l(invoice.updated_at, format: :br) %></th>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-end">
+      <%= form.button :submit, class: 'btn btn-success', data: { turbo_confirm: "#{t('global.confirm_delete')}" } %>
     </div>
-    <div class="col-sm">
-      <%= form.input :payment_local, collection: ['store', 'site'], as: :select %>
-    </div>
-    <div class="col-sm">
-      <%= form.input :payment_split, as: :numeric, input_html: { min: 1 } %>
-    </div>
-  </div>
-  <% if @sales.present? %>
-    <div div class="row">
-      <div class="col">
-        <dl class="row">
-          <dt class="col-sm-5">Quantidade</dt>
-          <dd class="col-sm-5"><%= number_to_currency(@sales.map{|p| p['quantity'].to_i}.sum, unit: '', precision: 0) %></dd>
-          <dt class="col-sm-5">Valor</dt>
-          <dd class="col-sm-5"><%= number_to_currency(@sales.map{|p| p['sum_price'].to_f}.sum) %></dd>
-          <dt class="col-sm-5">Itens</dt>
-          <dd class="col-sm-5"><%= number_to_currency(@sales.map{|p| p['product_id']}.count, unit: '', precision: 0) %></dd>
-        </dl>
-      </div>
-      <div class="col-sm-2 position-relative">
-        <div class="actions p-3 position-absolute bottom-0 end-0">
-          <%= form.button :submit, t('sales.new.finalize_sale'), class: "btn btn-success btn-sm" %>
-        </div>
-      </div>
-    </div>
-  <% end  %>
-<% end %>
+  <% end %>
+</div>

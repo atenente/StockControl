@@ -1,14 +1,9 @@
 <div class="container">
-  <div class="card text-center mt-1">
-    <h5 class="card-header"><%= t('global.search') %></h5>
-    <div class="card-body">
-      <%= render 'form_create_sale', sale: @sale %>
-    </div>
-  </div>
+  <%= render 'form_create_sale', sale: @sale %>
   <div class="card mt-2">
     <h5 class="card-header text-center"><%= t('invoices.invoice') %></h5>
     <div class="card-body">
-      <%= render 'invoices/invoice', invoice: @invoice %>
+      <%= render 'invoices/invoice', invoice: Invoice.new(total_value: @sales.sum(:sum_price), total_quantity: @sales.sum(:quantity)) %>
       <%= render 'sale', sales: @sales %>
     </div>
   </div>

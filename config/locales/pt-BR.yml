@@ -1,5 +1,6 @@
 pt-BR:
   global:
+    add_sale: Adicionar Item
     company_id: Empresa
     product_id: Produto
     user_id: Usuário
@@ -42,6 +43,8 @@ pt-BR:
     payment_method: Forma de pagamento
     payment_split: Parcelamento
     payment_local: Local da Venda
+    created_at: Criado em
+    updated_at: Atualizado em
     others: Outros
   messages:
     unauthorized: 'Sem autorização para acessar esta página.'
@@ -91,6 +94,17 @@ pt-BR:
     show:
       detail_sale: Detalhe da Venda
   invoices:
-    invoices: Cupom
+    invoices: Cupons
     invoice: Cupom
-
+    payment_method: Pagamento
+    payment_local: Tipo da Venda
+    payment_split: Parcelas
+    total_value: Valor Total
+    total_quantity: Quantidade Total
+    index:
+      all_invoices: Todos Cupons
+    edit:
+      edit_invoice: Editar Cupom
+    show:
+      detail_invoice: Detalhe do Cupom
+      total_invoice: Total do Cupom
