@@ -12,7 +12,7 @@
       <td class="border"><%= link_to t('global.edit'), edit_company_path(company), data: { turbo: false } %></td>
     <% elsif params[:action] == 'show' %>
       <td colspan='2' class="border">
-        <%= t('global.last_update') %>: <%= l(@company.updated_at, format: :br) %>
+        <%= t('global.last_update') %>: <%= l(company.updated_at, format: :br) %>
       </td>
     <% end %>
   </tr>

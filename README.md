@@ -9,18 +9,8 @@ Stock Control é um sistema de gerenciamento de estoque desenvolvido para pequen
 
 ## 🚧 Status do Projeto
 
-Este projeto está **em construção** e novas funcionalidades e melhorias estão sendo implementadas.
-### Funcionalidades
-- [x] **Autenticação**: Usuários podem se registrar e fazer login no sistema.
-- [x] **Autorização**: Controle de acesso de usuários.
-- [x] **CRUD de Empresas**: Gerenciamento das empresas, que utilizaram o sistema.
-- [x] **CRUD de Produtos**: Gerenciamento dos produtos por empresa.
-- [ ] **CRUD de Vendas**: Gerenciamento das vendas por empresa.
-- [ ] **Extração de Relatórios**: Geração de relatórios e extração (pdf, excel, csv).
-- [ ] **Importação de Dados em Massa**: Importação em massa de dados em produtos.
-- [ ] **Inserção de Imagens**: Upload de imagens para os logos de empresas e produtos.
-- [ ] **Envio de Relatórios por Email**: Geração e envio automatizado de e-mail.
-- ♾️ Testes e melhorias.
+Este projeto está **em construção** e novas funcionalidades e melhorias estão sendo implementadas através do link:
+[Status funcionalidades](https://github.com/users/atenente/projects/1)
 
 ## 🛠️ Principais Tecnologias Utilizadas
 - **Ruby 3.2.4** - Linguagem de programação utilizada no projeto.
@@ -50,10 +40,3 @@ Este projeto está **em construção** e novas funcionalidades e melhorias estã
    ```bash
    git clone https://github.com/atenente/StockControl.git
    cd StockControl
-2. Preparando o ambiente
-   ```bash
-    rails db:create
-    rails db:migrate
-    rails db:seed 
-   ```
-    **obs: seed é necessário para criar uma empresa e usuário master, para poder obter acesso ao sistema.

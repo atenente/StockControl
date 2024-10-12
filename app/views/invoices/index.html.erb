@@ -1,16 +1,15 @@
 <div class="container">
-  <h1><%= t('.all_invoices') %></h1>
-
+  <p></p>
   <%= link_to t('sales.new.create_sale'), new_sale_path, class: 'btn btn-success', data: { turbo: false } %>
-  <br><br>
+  <p></p>
   <div class="mb-1">
     <%= render  "shared/search_element" %>
   </div>
-  <%= turbo_frame_tag 'search' do %>
-    <div class="card">
-      <div class="card-body p-1">
+  <div class="card">
+    <div class="card-body p-1">
+      <%= turbo_frame_tag 'search' do %>
         <%= render 'index_form_invoice', invoices: @invoices %>
-      </div>
+      <% end  %>
     </div>
-  <% end  %>
+  </div>
 </div>

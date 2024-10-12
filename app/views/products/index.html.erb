@@ -1,18 +1,17 @@
 <div class="container">
-  <h1><%= t('.all_products') %></h1>
-
+  <p></p>
   <%= link_to t('products.new.create_product'), new_product_path, class: 'btn btn-success', data: { turbo: false } %>
-  <br><br>
+  <p></p>
   <div class="mb-1">
     <%= render  "shared/search_element" %>
   </div>
   <div class="table-responsive-md">
-    <%= turbo_frame_tag 'search' do %>
-      <table class="table text-nowrap">
-        <%= render 'header_product' %>
+    <table class="table text-nowrap">
+      <%= render 'header_product' %>
+      <%= turbo_frame_tag 'search' do %>
         <%= render @products %>
-      </table> 
-    <% end  %>
+      <% end  %>
+    </table> 
   </div>
 </div>
 
