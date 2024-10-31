@@ -22,7 +22,6 @@ pt-BR:
     sku: Código de Barra
     description: Descrição
     price: Preço
-    stock: Estoque
     supplier: Fornecedor
     size: Tamanho
     color: Cor
@@ -46,6 +45,14 @@ pt-BR:
     created_at: Criado em
     updated_at: Atualizado em
     others: Outros
+  date:
+    date: Data
+    day: Dia
+    week: Semana
+    month: Mês
+    year: Ano
+    hour: Hora
+    minute: Minuto
   messages:
     unauthorized: 'Sem autorização para acessar esta página.'
     not_found: 'Não Encontrado'
@@ -54,6 +61,7 @@ pt-BR:
     not_destroy_success: 'Não Deletado'
     failure: 'Ação falhou'
     invoice_empty: 'Sem itens para adicionar'
+    search_empty: 'Nenhum dado encontrado'
   homes:
     index:
       products_summary: Resumo dos produtos
